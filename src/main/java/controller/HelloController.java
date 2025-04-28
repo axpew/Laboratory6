@@ -48,7 +48,7 @@ public class HelloController {
     @FXML
     public void baseConvertView(ActionEvent actionEvent) {
         try {
-            load("baseConvert-view.fxml");
+            load("base-convert-view.fxml");
         } catch (IOException e) {
             e.printStackTrace();
         }

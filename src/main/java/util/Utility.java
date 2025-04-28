@@ -408,10 +408,7 @@ public class Utility {
         return operands.pop();
     }
 
-    private static boolean isOperator(char c) {
-        return c == '+' || c == '-' || c == '*' || c == '/';
-    }
-
+    // Método para evaluar si un operador tiene precedencia sobre otro
     private static boolean hasPrecedence(char operator1, char operator2) {
         if (operator2 == '(' || operator2 == ')') {
             return false;
@@ -422,6 +419,22 @@ public class Utility {
         return true;
     }
 
+    // Método para verificar si un carácter es un operador
+    private static boolean isOperator(char c) {
+        return c == '+' || c == '-' || c == '*' || c == '/' || c == '^';
+    }
+
+    // Método para obtener la precedencia de un operador
+    private static int getPrecedence(char operator) {
+        switch (operator) {
+            case '+': case '-': return 1; // Precedencia más baja
+            case '*': case '/': return 2;
+            case '^': return 3; // Precedencia más alta
+        }
+        return -1; // En caso de un operador no reconocido
+    }
+
+    // Método para realizar una operación dada un operador y dos operandos
     private static int calculate(char operator, int operand1, int operand2) {
         switch (operator) {
             case '+':
@@ -436,11 +449,13 @@ public class Utility {
                 }
                 return operand1 / operand2;
             case '^':
-                return (int)Math.pow(operand1, operand2);
+                return (int) Math.pow(operand1, operand2);
             default:
                 throw new IllegalArgumentException("Operador inválido");
         }
     }
+
+
 // ---------------------------------------------------------------------------------------------------------------------------------------------------------
 
 }//END CLASS
